@@ -25,12 +25,14 @@ python find-missing.py "foo, bar, spam.jpg"
 
 ### Options
 
+#### Exact match only
 ```shell script
 $ find-missing "foo, bar" --exact
 ```
 
 Looks for exact match, otherwise looks for partial match, so in the above example a file `foo.jpg` will be a match, and a file `foolitzer.jpg` will not.
 
+#### Verbose mode
 ```shell script
 $ find-missing "foo, bar" --verbose
 ```
