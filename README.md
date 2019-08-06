@@ -42,15 +42,12 @@ Will also check against subdirectories of the current directory.
 
 #### Verbose mode
 ```shell script
-$ find-missing "foo, bar" --verbose/-v
+$ find-missing "foo, bar" --verbose/-v 
 
-Verbose mode: True. Exact mode: False. Include directories: True
+Verbose mode: True. Exact mode: False. Include directories: False
 Looking for files: foo
 Directory content:
 ...
-.git/
-.idea/
-.gitignore
 README.md
 poetry.lock
 pyproject.toml
