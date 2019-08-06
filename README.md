@@ -35,7 +35,7 @@ Looks for exact match, otherwise looks for partial match, so in the above exampl
 $ find-missing "foo, bar" --verbose
 ```
 
-Verbose mode.
+Verbose mode (silent by default)
 
 ### List separator
 The tool will do it's best to find file names separated by anything. So a comma, a space, a semicolon will all work. The dot, underscore and dash will not as they can all be parts of file names.
