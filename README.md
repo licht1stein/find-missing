@@ -45,16 +45,18 @@ Will also check against subdirectories of the current directory.
 $ find-missing "foo, bar" --verbose/-v 
 
 Verbose mode: True. Exact mode: False. Include directories: False
-Looking for files: foo
+Looking for files: read
 Directory content:
-...
-README.md
-poetry.lock
-pyproject.toml
-setup.py
+        ...
+        .gitignore
+        README.md
+        poetry.lock
+        pyproject.toml
+        setup.py
 
-Found 1 missing files:
-foo
+Found 0 missing files:
+All here!
+
 ```
 
 Verbose mode (silent by default)
