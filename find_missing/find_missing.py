@@ -30,7 +30,7 @@ def main(list_of_files, exact: bool, verbose: bool):
 
     if result:
         click.echo("\n".join(result))
-    else:
+    elif not result and verbose:
         click.echo("All here!")
 
 
