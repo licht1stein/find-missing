@@ -30,7 +30,7 @@ def main(list_of_files, exact: bool, verbose: bool, dirs: bool):
         dir_content = sorted([f'{f.name}/' for f in files_in_folder if f.is_dir()])
         file_content = sorted([f'{f.name}' for f in files_in_folder if f.is_file()])
         dir_content.extend(file_content)
-        representation = '\n...\n' + '\n'.join(dir_content)
+        representation = '\n\t...\n\t' + '\n\t'.join(dir_content)
         click.echo(f'Directory content:{representation}')
 
     if not exact:
@@ -50,7 +50,7 @@ def main(list_of_files, exact: bool, verbose: bool, dirs: bool):
 def find_partial_match(list_of_files, files_in_folder):
     result = []
     for filename in list_of_files:
-        if not bool([f for f in files_in_folder if filename in f.name]):
+        if not bool([f for f in files_in_folder if filename.lower() in f.name.lower()]):
             result.append(filename)
     return result
 
@@ -62,7 +62,7 @@ def find_exact_match(list_of_files, files_in_folder):
             [
                 f
                 for f in files_in_folder
-                if filename == f.name or filename == f.name.split(".")[0]
+                if filename.lower() == f.name.lower() or filename.lower() == f.name.split(".")[0].lower()
             ]
         ):
             result.append(filename)
