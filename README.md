@@ -17,6 +17,12 @@ $ find-missing "foo, bar, spam.jpg"
 
 A file `foolitzer.jpg` will be a match without the `--exact` flag.
 
+## Installation and usage without pipx (not recommended)
+```shell script
+pip install find-missing
+python find-missing.py "foo, bar, spam.jpg"
+```
+
 ### Options
 
 ```shell script
