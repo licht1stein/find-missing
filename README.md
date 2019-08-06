@@ -1,7 +1,10 @@
 # FIND-MISSING
+[![PyPI](https://img.shields.io/pypi/v/find-missing)](https://pypi.org/project/find-missing/)
+![](https://img.shields.io/badge/maintained-not_intended-red)
+
 Find files missing in a folder. This tool is intended to be used with [pipx](https://pipxproject.github.io/pipx/) as a normal command line tool.
 
-## Installation with PIPX
+## Installation with PIPX   
 ```shell script
 pip install pipx
 pipx install find-missing
