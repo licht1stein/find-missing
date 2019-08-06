@@ -5,20 +5,33 @@ import click
 
 
 @click.command()
-@click.option('-e/-p', "--exact/--partial", default=False)
-@click.option('-v/-s', '--verbose/--silent', default=False)
+@click.option("-e/-p", "--exact/--partial", default=False)
+@click.option("-v/-s", "--verbose/--silent", default=False)
+@click.option("-d/-f", "--dirs/--files-only", default=False)
 @click.argument("list_of_files", type=str)
-def main(list_of_files, exact: bool, verbose: bool):
+def main(list_of_files, exact: bool, verbose: bool, dirs: bool):
     list_of_files = re.findall(r"[A-Za-z\d.\-_]+", list_of_files)
 
     if verbose:
-        click.echo(f"Looking for files: {list_of_files}. Exact mode: {exact}")
+        click.echo(f'Verbose mode: True. Exact mode: {exact}. Include directories: {dirs}')
+        click.echo(
+            f"Looking for files: {', '.join(list_of_files)}"
+        )
     cwd = Path.cwd()
 
-    files_in_folder = [f for f in list(cwd.glob("*.*")) if f.is_file()]
+    if not dirs:
+        files_in_folder = [f for f in list(cwd.glob("*.*")) if f.is_file()]
+    else:
+        files_in_folder = [
+            f for f in list(cwd.glob("*.*")) if f.is_file() or f.is_dir()
+        ]
 
     if verbose:
-        click.echo(f"Files in dir: {[f.name for f in files_in_folder]}")
+        dir_content = sorted([f'{f.name}/' for f in files_in_folder if f.is_dir()])
+        file_content = sorted([f'{f.name}' for f in files_in_folder if f.is_file()])
+        dir_content.extend(file_content)
+        representation = '\n...\n' + '\n'.join(dir_content)
+        click.echo(f'Directory content:{representation}')
 
     if not exact:
         result = find_partial_match(list_of_files, files_in_folder)
@@ -26,7 +39,7 @@ def main(list_of_files, exact: bool, verbose: bool):
         result = find_exact_match(list_of_files, files_in_folder)
 
     if verbose:
-        click.echo(f'\nFound {len(result)} missing files:')
+        click.echo(f"\nFound {len(result)} missing files:")
 
     if result:
         click.echo("\n".join(result))

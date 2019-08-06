@@ -27,17 +27,34 @@ python find-missing.py "foo, bar, spam.jpg"
 
 #### Exact match only
 ```shell script
-$ find-missing "foo, bar" --exact
+$ find-missing "foo, bar" --exact/-e
 ```
 
 Looks for exact match, otherwise looks for partial match, so in the above example a file `foo.jpg` will be a match, and a file `foolitzer.jpg` will not.
 
+#### Include directories
+
+```shell script
+find-missing "foo, bar" --dirs/-d
+```
+
+Will also check against subdirectories of the current directory.
+
 #### Verbose mode
 ```shell script
-$ find-missing "foo, bar" --verbose
+$ find-missing "foo, bar" --verbose/-v
 
-Looking for files: ['foo']. Exact mode: False
-Files in dir: ['find_missing.py', '__init__.py']
+Verbose mode: True. Exact mode: False. Include directories: True
+Looking for files: foo
+Directory content:
+...
+.git/
+.idea/
+.gitignore
+README.md
+poetry.lock
+pyproject.toml
+setup.py
 
 Found 1 missing files:
 foo
