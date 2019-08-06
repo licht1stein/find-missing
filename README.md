@@ -35,6 +35,12 @@ Looks for exact match, otherwise looks for partial match, so in the above exampl
 #### Verbose mode
 ```shell script
 $ find-missing "foo, bar" --verbose
+
+Looking for files: ['foo']. Exact mode: False
+Files in dir: ['find_missing.py', '__init__.py']
+
+Found 1 missing files:
+foo
 ```
 
 Verbose mode (silent by default)
